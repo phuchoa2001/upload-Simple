@@ -1,65 +1,44 @@
 import Link from "next/link";
-import Style from "styles/navbar.module.css";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { useState } from "react";
+import Styles from "styles/navbar.module.scss";
 function Navbar() {
-  const [session, loading] = useSession();
-  function handleSignIn(e) {
-    e.preventDefault();
-    signIn("github");
-  }
-  function handleSignout(e) {
-    e.preventDefault();
-    signOut();
+  const [menumobile, setMobile] = useState(false);
+  function handleToggleMenu() {
+    setMobile((prev) => !prev);
   }
   return (
-    <div className={Style.navbar}>
-      <div className={Style.logo}>
-        <h3 className={Style.heading}>Blue Team</h3>
+    <div className={Styles.navbar}>
+      <div className={Styles.logo}>
+        <Link href="/">
+          <a className={Styles.redirect}>
+            <h3 className={Styles.heading}>Upload SIMPLE</h3>
+          </a>
+        </Link>
       </div>
-      <div className={Style.menu}>
-        <ul className={Style.listitem}>
-          <li className={Style.item}>
-            <Link href="/">
-              <a className={Style.href}>Home</a>
+      <div className={Styles.menumobile} onClick={handleToggleMenu}>
+        <div className={Styles.icon}>
+          <i
+            className={`fa ${menumobile ? "fa-times" : "fa-bars"} fa-2x`}
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+      {menumobile && (
+        <ul className={Styles.listitemmobile}>
+          <li className={Styles.itemmobile}>
+            <Link href="https://www.facebook.com/profile.php?id=100075642372471">
+              <a className={Styles.hrefmobile}>Liên hệ</a>
             </Link>
           </li>
-          <li className={Style.item}>
-            <Link href="/dashbroad2">
-              <a className={Style.href}>Dashboard</a>
+        </ul>
+      )}
+      <div className={Styles.menu}>
+        <ul className={Styles.listitem}>
+          <li className={Styles.item}>
+            <Link href="https://www.facebook.com/profile.php?id=100075642372471">
+              <a className={Styles.href}>Liên hệ</a>
             </Link>
           </li>
-          <li className={Style.item}>
-            <Link href="/blog2">
-              <a className={Style.href}>Blog</a>
-            </Link>
-          </li>
-          {!session && (
-            <li className={Style.item}>
-              <Link href="/api/auth/signin">
-                <a className={Style.href} onClick={handleSignIn}>
-                  Sign in
-                </a>
-              </Link>
-            </li>
-          )}
-          {session && (
-            <>
-              <li className={Style.item}>
-                <Link href="/api/auth/username">
-                  <a className={Style.href} onClick={handleSignIn}>
-                    {session && session.user.name}
-                  </a>
-                </Link>
-              </li>
-              <li className={Style.item}>
-                <Link href="/api/auth/signout">
-                  <a className={Style.href} onClick={handleSignout}>
-                    sign out
-                  </a>
-                </Link>
-              </li>
-            </>
-          )}
         </ul>
       </div>
     </div>

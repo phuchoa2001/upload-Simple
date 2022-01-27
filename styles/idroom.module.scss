@@ -1,0 +1,61 @@
+.idroom {
+  height: calc(100vh - 50px);
+}
+.animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0px 0px;
+  background: #e9e8e6;
+  height: 100%;
+  width: 100%;
+  animation-name: animation;
+  animation-duration: 0.5s;
+  position: relative;
+}
+.gopage {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.span {
+  display: block;
+}
+.icon {
+  margin-right: 6px;
+}
+@keyframes animation {
+  0% {
+    width: 50%;
+    height: 50%;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+}
+.text {
+  font-size: 50px;
+  font-family: "Dancing Script", "cursive";
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+  /* IPAD  */
+  .idroom {
+    height: 350px;
+  }
+}
+@media only screen and (min-width: 540px) and (max-width: 719px) {
+  /* Điện thoại màn hình lớn thua IPAD */
+  .idroom {
+    height: 350px;
+  }
+}
+@media only screen and (max-width: 539px) {
+  /* PC Điện thoại nhỏ hơn 539px */
+  .idroom {
+    height: 350px;
+  }
+}
