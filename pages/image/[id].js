@@ -51,7 +51,7 @@ function Image({ data, id }) {
       });
   }
   async function handleSave() {
-    console.log("id");
+    console.log(id);
     fetch(`/api/image/${id}`, {
       method: "POST", // or 'PUT'
       headers: {

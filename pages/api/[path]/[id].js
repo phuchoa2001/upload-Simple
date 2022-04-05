@@ -3,6 +3,13 @@ import info from "../../../utils/models/info";
 import textAuth from "../../../utils/models/textAuth";
 import image from "../../../utils/models/image";
 import imageAuth from "../../../utils/models/imageAuth";
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb' // Set desired value here
+    }
+  }
+}
 export default async function handler(req, res) {
   const { id, path } = req.query;
   let models = null;
